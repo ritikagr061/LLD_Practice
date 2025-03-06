@@ -16,4 +16,6 @@ public class BookingTicket {
         this.dropOffDateTime = dropOffDateTime;
         this.vehicle = vehicle;
     }
+
+
 }

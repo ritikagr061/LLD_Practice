@@ -2,16 +2,14 @@ package payment;
 
 import java.util.Scanner;
 
-public class UpiPaymentPortalStrategy implements PaymentPortalStrategy{
+public class CardPaymentPortalStrategy implements PaymentPortalStrategy{
     @Override
     public boolean Authentication() {
-        System.out.println("input the upi id");
+        System.out.println("input card number and cvv no. in same line");
         Scanner scanner = new Scanner(System.in);
-        String upiId=scanner.nextLine();
-        System.out.println("input the upi password");
-        String upiPass=scanner.nextLine();
-
-        //authentication code
+        String debitCardDetails=scanner.nextLine();
+        System.out.println("input card expiry date in MM/YY format");
+        String expDate=scanner.next();
         return true;
     }
 
