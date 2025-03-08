@@ -93,12 +93,14 @@ public class ZoomCarApp {
         System.out.println("Now please choose dropoff location");
         dropOffLocation=inputLocation();
 
-        System.out.println("input the vehicle pickup time dd-MM-yyyy");
+        System.out.println("input the vehicle pickup time dd-MM-yyyy HH:mm");
+        if (scanner.hasNextLine()) scanner.nextLine();
         String pickupDateTimeStr=scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         pickupDateTime = LocalDateTime.parse(pickupDateTimeStr,formatter);
 
-        System.out.println("input the vehicle dropOff time dd-MM-yyyy");
+        System.out.println("input the vehicle dropOff time dd-MM-yyyy HH:mm");
+        //if (scanner.hasNextLine()) scanner.nextLine();
         String dropOffDateTimeStr = scanner.nextLine();
         dropOffDateTime=LocalDateTime.parse(dropOffDateTimeStr,formatter);
 
