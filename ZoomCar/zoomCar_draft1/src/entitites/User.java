@@ -1,9 +1,11 @@
 package entitites;
 
+import Observer.BookingObserver;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements BookingObserver {
     public Integer userId;
     public String name;
     public String drivingLicenseId;
@@ -18,5 +20,11 @@ public class User {
 
     public void addBooking(BookingTicket booking){
         userBookings.add(booking);
+    }
+
+    @Override
+    public void handleBooking(BookingTicket t) {
+        System.out.println(name+" has booked the car "+t.vehicle.model);
+        userBookings.add(t);
     }
 }

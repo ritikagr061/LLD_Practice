@@ -12,6 +12,7 @@ public class UpiPaymentPortalStrategy implements PaymentPortalStrategy{
         String upiPass=scanner.nextLine();
 
         //authentication code
+        System.out.println("Processing UPI authentication ...");
         return true;
     }
 
@@ -19,6 +20,7 @@ public class UpiPaymentPortalStrategy implements PaymentPortalStrategy{
     public void makePayment(int amount) {
 
         //do some processing
+        System.out.println("Processing Payment..");
         System.out.println("payment Successful");
     }
 }

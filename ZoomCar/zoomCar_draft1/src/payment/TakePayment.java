@@ -4,12 +4,13 @@ import enums.PaymentMethod;
 
 import java.util.Scanner;
 
-public class TakePayment extends Payment {
+public class TakePayment implements Payment {
+    private int amount;
     public PaymentMethod paymentMethod;
     public PaymentPortalStrategy paymentPortalStrategy;
 
     public TakePayment(int amt) {
-        super(amt);
+        amount=amt;
         System.out.println("Please select the payment method, type 1.debit or 2.upi");
         Scanner sc= new Scanner(System.in);
         String paymentType = sc.next();
@@ -18,7 +19,6 @@ public class TakePayment extends Payment {
         else if(paymentType.equals("upi"))
             paymentMethod=PaymentMethod.upi;
     }
-
 
     public boolean makePayment(){
         if(paymentMethod==PaymentMethod.upi)

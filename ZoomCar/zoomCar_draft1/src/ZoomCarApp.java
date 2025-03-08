@@ -1,7 +1,4 @@
-import entitites.Location;
-import entitites.Store;
-import entitites.User;
-import entitites.Vehicle;
+import entitites.*;
 import enums.Status;
 import enums.VehicleType;
 
@@ -21,11 +18,8 @@ public class ZoomCarApp {
 
     public User currentUser;
 
-    public String VehicleModel;
-    public LocalDateTime pickupDateTime;
-    public LocalDateTime dropOffDateTime;
-    public int pickupLocationPinCode;
-    public int dropOffLocationPinCode;
+    private BookingTicket ticket;
+
     Scanner scanner = new Scanner(System.in);
 
     public Store optimalStore;
@@ -85,33 +79,42 @@ public class ZoomCarApp {
         System.out.println("choose vehicle by inputting vehicle number");
         String vehicleNumber = scanner.next();
         Vehicle chosedVehicle = relevantStores.stream().flatMap((Store s)->s.vehicleList.stream()).filter((Vehicle v)->v.numberPlate.equals(vehicleNumber)).findFirst().get();
-
+        Store chosedStore = relevantStores.stream().filter((Store s)->s.vehicleList.contains(chosedVehicle)).findFirst().get();
         System.out.println(chosedVehicle);
 
+
+        Location pickupLocation;
+        Location dropOffLocation;
+        LocalDateTime pickupDateTime;
+        LocalDateTime dropOffDateTime;
+
         System.out.println("Now please choose pickup location");
-
-
+        pickupLocation=inputLocation();
         System.out.println("Now please choose dropoff location");
+        dropOffLocation=inputLocation();
 
-    }
-    public void takeInput(){
-        System.out.println("input the vehicle model");
-        VehicleModel = scanner.nextLine();
-        System.out.println("input the vehicle pickup location pincode");
-        pickupLocationPinCode= scanner.nextInt();
-        System.out.println("input the vehicle dropoff location pincode");
-        dropOffLocationPinCode=scanner.nextInt();
-
-
-        System.out.println("input the vehicle pickup time");
+        System.out.println("input the vehicle pickup time dd-MM-yyyy");
         String pickupDateTimeStr=scanner.nextLine();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         pickupDateTime = LocalDateTime.parse(pickupDateTimeStr,formatter);
 
-        System.out.println("input the vehicle dropOff time");
+        System.out.println("input the vehicle dropOff time dd-MM-yyyy");
         String dropOffDateTimeStr = scanner.nextLine();
         dropOffDateTime=LocalDateTime.parse(dropOffDateTimeStr,formatter);
 
+        ticket=new BookingTicket(pickupLocation,dropOffLocation,pickupDateTime,dropOffDateTime,chosedVehicle);
+        ticket.processBooking(currentUser,chosedStore);
+
+    }
+    public Location inputLocation(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("type address");
+        String add = sc.next();
+        System.out.println("type pincode");
+        Integer pin=sc.nextInt();
+        System.out.println("type city");
+        String city=sc.next();
+        return new Location(add,pin,city);
     }
 
 }
