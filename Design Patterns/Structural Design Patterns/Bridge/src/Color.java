@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public interface Color {
+public interface Color {
+    public String printColor();
 }
