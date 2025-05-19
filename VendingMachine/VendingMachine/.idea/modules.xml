@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ObserverDesign.iml" filepath="$PROJECT_DIR$/ObserverDesign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VendingMachine.iml" filepath="$PROJECT_DIR$/VendingMachine.iml" />
     </modules>
   </component>
 </project>
